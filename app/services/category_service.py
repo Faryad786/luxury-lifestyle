@@ -22,7 +22,6 @@ async def create_category(db: AsyncSession, category: CategoryCreate):
     return new_category
 
 async def get_category(db: AsyncSession, category_id: int) -> CategoryInDB:
-    # Correct SQLAlchemy 2.0 async query syntax
     stmt = select(Category).where(
         Category.id == category_id,
         Category.is_deleted == False

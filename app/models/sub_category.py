@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime, func
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
-from app.database import Base
+from app.models.base import Base  # shared base
 
 class Subcategory(Base):
     __tablename__ = "subcategories"
@@ -13,4 +13,4 @@ class Subcategory(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
 
-    category = relationship("Category", backref="subcategories")
+    category = relationship("Category", back_populates="subcategories")
